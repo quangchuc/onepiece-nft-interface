@@ -45,7 +45,28 @@ export const Header = () => {
 
     return (
         <nav className={classes.navBarItems}>
-            <h2>RetroCats</h2>
+            <h2>OnePieceGame</h2>
+            <div>
+                <Button onClick={() => { buyCrypto() }}>
+                    Buy Crypto 
+                </Button>
+                <Button 
+                    variant='contained'
+                    color='primary'
+                    onClick={() => {
+                        if (!isAuthenticated || !isWeb3Enabled) {
+                            enableAndAuthenticate()
+                        } else {
+                            logout()
+                        }
+                    }}
+                    disabled={isAuthenticating}
+                >
+                    {isAuthenticating || isWeb3EnableLoading ? 'Loading...' : !isAuthenticated || !isWeb3Enabled ? 'Connect & Login' : 'Logout'}
+                </Button>
+                {authError && <div>{authError.message}</div>}
+                {web3EnableError && <div>{web3EnableError.message}</div>}
+            </div>
         </nav>
     )
 
