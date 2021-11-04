@@ -12,3 +12,52 @@ import {
     useMoralis,
 } from 'react-moralis'
 import { MintOrViewCards } from './MintCards'
+import { textAlign } from '@mui/system'
+
+const useStyles = makeStyles(() => ({
+    title: {
+        color: "black",
+        textAlign: 'center',
+        padding: 4,
+        fontSize: '2rem',
+    },
+    box: {
+        backgroundColor: "white",
+        borderRadius: "25px",
+    }, 
+    header: {
+        color: "blue"
+    }
+}))
+
+const tabOptions = [
+    "mint cards", 
+    "my cards", 
+    "search cards"
+]
+
+export const isValidNetwork = (network) => {
+    if (networkMapping.hasOwnProperty(network)) {
+        return true
+    }
+    return false
+}
+
+export const Main = () => {
+    const classes = useStyles()
+    const { Web3Api } = useMoralisWeb3Api()
+    const { web3, isWeb3Enabled, Moralis, users, isAuthenticated, enableWeb3 } = useMoralis()
+
+    const getChain = async () => {
+        if (isAuthenticated && isWeb3Enabled) {
+            return await web3.eth.getChainId()
+        }
+        return null
+    }
+
+    const [selectedTab, setSelectedTab] = useState(tabOptions[0])
+    const [networkId, setNetworkId] = useState(null)
+    
+
+    
+}
