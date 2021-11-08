@@ -1,26 +1,26 @@
 import React from 'react'
 import { Header } from './components/Header'
-import './App.css';
+import { Main } from './components/Main'
+import { Container } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+
+const useStyles = makeStyles(() => ({
+  container: {
+    borderRadius: "10px",
+    boxShadow: "0px 0px 10px #000000",
+  }
+}))
 
 function App() {
+  const classes = useStyles()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Header />
+      <Container className={classes.container} maxWidth='md'>
+        <Main/>
+      </Container>
+    </>
+  )
 }
 
 export default App;
